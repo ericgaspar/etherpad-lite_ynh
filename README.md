@@ -1,1 +1,1 @@
-# Etherpade-Lite for YunoHost
+# Etherpad-Lite for YunoHost
