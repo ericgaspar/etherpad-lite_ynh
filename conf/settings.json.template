@@ -113,7 +113,7 @@
    * "full-width-editor" variant (by default editor is rendered as a page, with
    * a max-width of 900px).
    */
-  "skinVariants": "super-light-toolbar super-light-editor light-background",
+  "skinVariants": "dark-toolbar super-light-editor light-background",
 
   /*
    * IP and port which Etherpad should bind at.
@@ -180,17 +180,17 @@
    * See: https://github.com/ether/etherpad-lite/wiki/How-to-use-Etherpad-Lite-with-MySQL
    */
 
-  /*
+
   "dbType" : "mysql",
   "dbSettings" : {
-    "user":     "etherpaduser",
+    "user":     "__DB_USER__",
     "host":     "localhost",
     "port":     3306,
-    "password": "PASSWORD",
-    "database": "etherpad_lite_db",
+    "password": "__DB_PWD__",
+    "database": "__DB_USER__",
     "charset":  "utf8mb4"
   },
-  */
+
 
   /*
    * The default text of a pad
@@ -213,7 +213,7 @@
     "rtl":              false,
     "alwaysShowChat":   false,
     "chatAndUsers":     false,
-    "lang":             "en-gb"
+    "lang":             "__LANGUAGE__"
   },
 
   /*
@@ -404,12 +404,12 @@
    *          follow the section "secure your installation" in README.md
    */
 
-  /*
+
   "users": {
-    "admin": {
+    "__ADMIN__": {
       // 1) "password" can be replaced with "hash" if you install ep_hash_auth
       // 2) please note that if password is null, the user will not be created
-      "password": "changeme1",
+      "password": "__PASSWORD__",
       "is_admin": true
     },
     "user": {
@@ -419,7 +419,7 @@
       "is_admin": false
     }
   },
-  */
+
 
   /*
    * Restrict socket.io transport methods
