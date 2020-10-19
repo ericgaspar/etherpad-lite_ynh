@@ -7,8 +7,8 @@
         "fr": "Expliquez en *quelques* (10~15) mots l'utilité de l'app ou ce qu'elle fait (l'objectif est de donner une idée grossière pour des utilisateurs qui naviguent dans un catalogue de 100+ apps)"
     },
     "version": "1.8.6~ynh1",
-    "url": "https://example.com",
-    "license": "free",
+    "url": "https://etherpad.org/",
+    "license": "Apache-2.0",
     "maintainer": {
         "name": "John doe"
     },
