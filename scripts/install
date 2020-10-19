@@ -133,7 +133,7 @@ ynh_system_user_create --username=$app
 #=================================================
 ynh_script_progression --message="Configuring Etherpad-Lite..." --weight=6
 
-cp ../conf/seetings.json.template $final_path/settings.json
+cp ../conf/settings.json.template $final_path/settings.json
 
 ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/settings.json"
 ynh_replace_string --match_string="__DB_USER__" --replace_string="replace_string" --target_file="$final_path/settings.json"
