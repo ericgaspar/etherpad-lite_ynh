@@ -78,7 +78,7 @@ ynh_install_nodejs --nodejs_version=$nodejs_version
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Creating a MySQL database..." --weight=5
+ynh_script_progression --message="Creating a PostgreSQL database..." --weight=5
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
