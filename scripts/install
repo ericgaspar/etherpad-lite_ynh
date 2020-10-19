@@ -150,7 +150,7 @@ ynh_add_systemd_config
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum --file="$final_path/settings.json"
-ynh_store_file_checksum --file="$final_path/credentials..json"
+ynh_store_file_checksum --file="$final_path/credentials.json"
 
 #=================================================
 # GENERIC FINALIZATION
