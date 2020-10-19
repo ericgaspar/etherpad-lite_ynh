@@ -9,13 +9,13 @@
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
 ## Overview
-Etherpad-Lite is a highly customizable Open Source online editor providing collaborative editing in really real-time.
+Etherpad is a highly customizable Open Source online editor providing collaborative editing in really real-time.
 
 **Shipped version:** 1.8.6
 
 ## Screenshots
 
-![](https://github.com/ether/etherpad-lite/blob/develop/doc/images/etherpad_demo.gif)
+![](https://github.com/ether/etherpad/blob/develop/doc/images/etherpad_demo.gif)
 
 ## Demo
 
