@@ -92,7 +92,7 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
 
-mv ../sources/etherpad-lite-1.8.6/* $final_path
+cp -R ../sources/etherpad-lite-1.8.6/* $final_path
 
 #=================================================
 # NGINX CONFIGURATION
@@ -115,9 +115,14 @@ ynh_system_user_create --username=$app
 #=================================================
 # ynh_script_progression --message="Installing Etherpad-Lite..." --weight=90
 
+# pushd "$final_path" || ynh_die
+# 	ynh_use_nodejs
+# 	bin/setup
+# popd || ynh_die
+
 # # Install dependencies and proceed to the installation
 # ynh_use_nodejs
-# (
+#
 #     cd "$final_path"
 #     chown -R $app: $final_path
 #     ynh_exec_as $app bin/run.sh
