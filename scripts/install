@@ -71,6 +71,8 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 #=================================================
 ynh_script_progression --message="Installing NodeJS..." --weight=12
 
+ynh_install_app_dependencies $pkg_dependencies
+
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
@@ -79,8 +81,14 @@ ynh_install_nodejs --nodejs_version=$nodejs_version
 ynh_script_progression --message="Creating a MySQL database..." --weight=5
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
+db_pwd=$(ynh_string_random --length=30)
+
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-ynh_mysql_setup_db --db_user=$db_name --db_name=$db_name
+ynh_app_setting_set --app=$app --key=db_pwd  --value=$db_pwd
+
+ynh_psql_test_if_first_run
+ynh_psql_setup_db --db_user=$db_user --db_name=$db_name --db_pwd=$db_pwd
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -175,7 +183,7 @@ yunohost service add $app --description "A short description of the app" --log "
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log" --line_match="You can access your Etherpad instance at" 
+ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log" #--line_match="You can access your Etherpad instance at" 
 
 #=================================================
 # SETUP SSOWAT
