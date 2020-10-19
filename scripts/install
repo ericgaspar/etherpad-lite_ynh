@@ -116,7 +116,7 @@ chown -R $app: $final_path
 
 pushd "$final_path" || ynh_die
  	ynh_use_nodejs
- 	bin/setup
+ 	bin/setup.sh
  	bin/installDeps.sh
 popd || ynh_die
 
