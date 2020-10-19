@@ -95,7 +95,7 @@ ynh_setup_source --dest_dir="$final_path"
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring nginx web server..." --weight=4
+ynh_script_progression --message="Configuring NGINX web server..." --weight=4
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -111,26 +111,19 @@ ynh_system_user_create --username=$app
 #=================================================
 # INSTALL ETHERPAD
 #=================================================
-ynh_script_progression --message="Installing Etherpad..." --weight=90
+ynh_script_progression --message="Installing Etherpad-Lite..." --weight=90
 
 # Install dependencies and proceed to the installation
 ynh_use_nodejs
 (
     cd "$final_path"
-    ynh_exec_as $app PATH="$nodejs_path:$PATH" "$nodejs_path/npm" bin/run.sh
+    ynh_exec_as $app PATH="$nodejs_path:$PATH" bin/run.sh
 )
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=4
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
 
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
+ynh_script_progression --message="Configuring Etherpad-Lite..." --weight=6
 
 cp ../conf/seetigs.json.template $final_path/settings.json
 
@@ -140,6 +133,14 @@ ynh_replace_string --match_string="__DP_PWD__" --replace_string="replace_string"
 ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$final_path/settings.json"
 ynh_replace_string --match_string="__ADMIN__" --replace_string="$admin" --target_file="$final_path/settings.json"
 ynh_replace_string --match_string="__PASSWORD__" --replace_string="$password" --target_file="$final_path/settings.json"
+
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Configuring a systemd service..." --weight=4
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
@@ -196,7 +197,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..." --weight=1
+ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
 ynh_systemd_action --service_name=nginx --action=reload
 
@@ -204,4 +205,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression --message="Installation of Etherpad-Lite completed" --last
