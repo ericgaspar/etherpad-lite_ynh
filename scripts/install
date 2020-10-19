@@ -117,7 +117,7 @@ ynh_script_progression --message="Installing Etherpad..." --weight=90
 ynh_use_nodejs
 (
     cd "$final_path"
-    ynh_exec_as $app bin/run.sh
+    ynh_exec_as $app PATH="$nodejs_path:$PATH" "$nodejs_path/npm" bin/run.sh
 )
 
 #=================================================
