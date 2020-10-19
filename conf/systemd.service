@@ -9,7 +9,7 @@ Group=__APP__
 WorkingDirectory=__FINALPATH__
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/nodejs __FINALPATH__/node_modules/ep_etherpad-lite/node/server.js
-Restart=always # use mysql plus a complete settings.json to avoid Service hold-off time over, scheduling restart.
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
