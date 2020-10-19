@@ -131,18 +131,10 @@ ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --
 
 cp ../conf/credentials.json $final_path/credentials.json
 
-ynh_replace_string --match_string="__DB_USER__" --replace_string="replace_string" --target_file="$final_path/credentials.json"
+ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/credentials.json"
 ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/credentials.json"
 ynh_replace_string --match_string="__ADMIN__" --replace_string="$admin" --target_file="$final_path/credentials.json"
 ynh_replace_string --match_string="__PASSWORD__" --replace_string="$password" --target_file="$final_path/credentials.json"
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=4
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
@@ -151,6 +143,14 @@ ynh_add_systemd_config
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum --file="$final_path/settings.json"
 ynh_store_file_checksum --file="$final_path/credentials.json"
+
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Configuring a systemd service..." --weight=4
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
 #=================================================
 # GENERIC FINALIZATION
@@ -175,7 +175,7 @@ yunohost service add $app --description "A short description of the app" --log "
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log" --line_match="You can access your Etherpad instance at" 
+ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log" #--line_match="You can access your Etherpad instance at" 
 
 #=================================================
 # SETUP SSOWAT
@@ -201,4 +201,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of Etherpad-Lite completed" --last
+ynh_script_progression --message="Installation of Etherpad completed" --last
