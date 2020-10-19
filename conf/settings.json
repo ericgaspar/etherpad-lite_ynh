@@ -68,7 +68,7 @@
   /*
    * Name your instance!
    */
-  "title": "Etherpad Lite",
+  "title": "Etherpad",
 
   /*
    * favicon default name
@@ -125,7 +125,7 @@
    *    "ip": "",                             // <-- has to be an empty string
    *    "port" : "/somepath/etherpad.socket", // <-- path to a Unix socket
    */
-  "ip": "0.0.0.0",
+  "ip": "127.0.0.1",
   "port": __PORT__,
 
   /*
@@ -160,23 +160,6 @@
    * You shouldn't use "dirty" for for anything else than testing or
    * development.
    */
-
-  /*
-   * An Example of MySQL Configuration (commented out).
-   *
-   * See: https://github.com/ether/etherpad-lite/wiki/How-to-use-Etherpad-Lite-with-MySQL
-   */
-
-  "dbType" : "mysql",
-  "dbSettings" : {
-    "user":     "__DB_USER__",
-    "host":     "localhost",
-    "port":     3306,
-    "password": "__DB_PWD__",
-    "database": "__DB_USER__",
-    "charset":  "utf8mb4"
-  },
-
 
   /*
    * The default text of a pad
@@ -378,34 +361,6 @@
      */
     "percentageToScrollWhenUserPressesArrowUp": 0
   },
-
-  /*
-   * Users for basic authentication.
-   *
-   * is_admin = true gives access to /admin.
-   * If you do not uncomment this, /admin will not be available!
-   *
-   * WARNING: passwords should not be stored in plaintext in this file.
-   *          If you want to mitigate this, please install ep_hash_auth and
-   *          follow the section "secure your installation" in README.md
-   */
-
-
-  "users": {
-    "__ADMIN__": {
-      // 1) "password" can be replaced with "hash" if you install ep_hash_auth
-      // 2) please note that if password is null, the user will not be created
-      "password": "__PASSWORD__",
-      "is_admin": true
-    },
-    "user": {
-      // 1) "password" can be replaced with "hash" if you install ep_hash_auth
-      // 2) please note that if password is null, the user will not be created
-      "password": "changeme1",
-      "is_admin": false
-    }
-  },
-
 
   /*
    * Restrict socket.io transport methods

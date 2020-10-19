@@ -115,7 +115,6 @@ ynh_script_progression --message="Installing Etherpad-Lite..." --weight=90
 chown -R $app: $final_path
 
 pushd "$final_path" || ynh_die
-
  	ynh_use_nodejs
  	ynh_exec_as $app bin/installDeps.sh
 popd || ynh_die
@@ -125,14 +124,17 @@ popd || ynh_die
 #=================================================
 ynh_script_progression --message="Configuring Etherpad-Lite..." --weight=6
 
-cp ../conf/settings.json.template $final_path/settings.json
+cp ../conf/settings.json $final_path/settings.json
 
 ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/settings.json"
-ynh_replace_string --match_string="__DB_USER__" --replace_string="replace_string" --target_file="$final_path/settings.json"
-ynh_replace_string --match_string="__DP_PWD__" --replace_string="replace_string" --target_file="$final_path/settings.json"
 ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$final_path/settings.json"
-ynh_replace_string --match_string="__ADMIN__" --replace_string="$admin" --target_file="$final_path/settings.json"
-ynh_replace_string --match_string="__PASSWORD__" --replace_string="$password" --target_file="$final_path/settings.json"
+
+cp ../conf/credentials.json $final_path/credentials.json
+
+ynh_replace_string --match_string="__DB_USER__" --replace_string="replace_string" --target_file="$final_path/credentials.json"
+ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/credentials.json"
+ynh_replace_string --match_string="__ADMIN__" --replace_string="$admin" --target_file="$final_path/credentials.json"
+ynh_replace_string --match_string="__PASSWORD__" --replace_string="$password" --target_file="$final_path/credentials.json"
 
 #=================================================
 # SETUP SYSTEMD
@@ -148,6 +150,7 @@ ynh_add_systemd_config
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum --file="$final_path/settings.json"
+ynh_store_file_checksum --file="$final_path/credentials..json"
 
 #=================================================
 # GENERIC FINALIZATION
@@ -157,6 +160,7 @@ ynh_store_file_checksum --file="$final_path/settings.json"
 
 # Set permissions to app files
 chown -R $app: $final_path
+chmod 600 $final_path/credentials.json
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
