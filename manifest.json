@@ -38,8 +38,8 @@
                     "en": "Choose a path for Etherpad Lite",
                     "fr": "Choisissez un chemin pour Etherpad Lite"
                 },
-                "example": "/example",
-                "default": "/example"
+                "example": "/etherpad-lite",
+                "default": "/etherpad-lite"
             },
             {
                 "name": "admin",
