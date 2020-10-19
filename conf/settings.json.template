@@ -68,7 +68,7 @@
   /*
    * Name your instance!
    */
-  "title": "Etherpad",
+  "title": "Etherpad Lite",
 
   /*
    * favicon default name
@@ -126,7 +126,7 @@
    *    "port" : "/somepath/etherpad.socket", // <-- path to a Unix socket
    */
   "ip": "0.0.0.0",
-  "port": 9001,
+  "port": __PORT__,
 
   /*
    * Option to hide/show the settings.json in admin page.
