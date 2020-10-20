@@ -67,9 +67,9 @@ port=$(ynh_find_port --port=9001)
 ynh_app_setting_set --app=$app --key=port --value=$port
 
 #=================================================
-# INSTALL NODEJS
+# INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing NodeJS..." --weight=12
+ynh_script_progression --message="Installing dependencies..." --weight=12
 
 ynh_install_app_dependencies $pkg_dependencies
 
@@ -153,14 +153,6 @@ ynh_store_file_checksum --file="$final_path/settings.json"
 ynh_store_file_checksum --file="$final_path/credentials.json"
 
 #=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=4
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
-
-#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
@@ -169,6 +161,14 @@ ynh_add_systemd_config
 # Set permissions to app files
 chown -R $app: $final_path
 chmod 600 $final_path/credentials.json
+
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Configuring a systemd service..." --weight=4
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST

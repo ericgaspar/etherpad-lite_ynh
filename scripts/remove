@@ -52,7 +52,7 @@ ynh_script_progression --message="Removing the PostgreSQL database..." --weight=
 ynh_psql_remove_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# REMOVE APP MAIN DIR
+# REMOVE ETHERPAD MAIN DIR
 #=================================================
 ynh_script_progression --message="Removing Etherpad main directory..." --weight=3
 

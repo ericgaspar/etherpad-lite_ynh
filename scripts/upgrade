@@ -108,14 +108,6 @@ ynh_script_progression --message="Making sure dedicated system user exists..." -
 ynh_system_user_create --username=$app
 
 #=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Upgrading systemd configuration..." --time --weight=1
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
-
-#=================================================
 # INSTALL ETHERPAD
 #=================================================
 ynh_script_progression --message="Installing Etherpad..." --weight=90
@@ -153,6 +145,14 @@ ynh_replace_string --match_string="__PASSWORD__" --replace_string="$password" --
 # Set permissions on app files
 chown -R $app: $final_path
 chmod 600 $final_path/credentials.json
+
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Upgrading systemd configuration..." --time --weight=1
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
