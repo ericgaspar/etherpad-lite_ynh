@@ -34,7 +34,7 @@ db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=db_pwd)
 
 #=================================================
-# CHECK IF THE APP CAN BE RESTORED
+# CHECK IF ETHERPAD CAN BE RESTORED
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..." --weight=2
 
@@ -74,8 +74,6 @@ ynh_system_user_create --username=$app
 chown -R $app: $final_path
 chmod 600 $final_path/credentials.json
 
-#=================================================
-# SPECIFIC RESTORATION
 #=================================================
 # RESTORE THE POSTQRESQL DATABASE
 #=================================================
