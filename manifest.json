@@ -10,7 +10,7 @@
     "url": "https://etherpad.org/",
     "license": "Apache-2.0",
     "maintainer": {
-        "name": "John doe"
+        "name": ""
     },
     "requirements": {
         "yunohost": ">= 4.0.7"
