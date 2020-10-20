@@ -11,7 +11,6 @@
 		language="fr"
 		is_public=1	(PUBLIC|public=1|private=0)
 		password="pass"
-		#port="666"	(PORT)
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=1
@@ -25,7 +24,6 @@
 		port_already_use=0
 		change_url=1
 ;;; Levels
-	# If the level 5 (Package linter) is forced to 1. Please add justifications here.
 	Level 5=auto
 ;;; Options
 Email=
@@ -33,5 +31,5 @@ Notification=none
 ;;; Upgrade options
 	; commit=CommitHash
 		name=Name and date of the commit.
-		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&
+		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&
 
